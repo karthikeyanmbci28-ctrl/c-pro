@@ -1,0 +1,22 @@
+#include <vector>
+#include <unordered_set>
+
+class Solution {
+public:
+    bool containsDuplicate(std::vector<int>& nums) {
+        // Hash set to store numbers we have already seen
+        std::unordered_set<int> seenNumbers;
+        
+        for (int num : nums) {
+            // If the number is already in the set, we found a duplicate
+            if (seenNumbers.find(num) != seenNumbers.end()) {
+                return true;
+            }
+            // Otherwise, insert the number into the set
+            seenNumbers.insert(num);
+        }
+        
+        // All elements are distinct
+        return false;
+    }
+};
