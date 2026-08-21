@@ -1,0 +1,32 @@
+#include <string>
+#include <stack>
+
+class Solution {
+public:
+    bool isValid(std::string s) {
+        std::stack<char> openBrackets;
+        
+        for (char c : s) {
+            // Step 2: Push opening brackets onto the stack
+            if (c == '(' || c == '{' || c == '[') {
+                openBrackets.push(c);
+            } 
+            // Step 3: Check closing brackets against the stack top
+            else {
+                if (openBrackets.empty()) return false;
+                
+                char top = openBrackets.top();
+                openBrackets.pop();
+                
+                if ((c == ')' && top != '(') ||
+                    (c == '}' && top != '{') ||
+                    (c == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        
+        // Step 4: Stack must be empty for the string to be valid
+        return openBrackets.empty();
+    }
+};
