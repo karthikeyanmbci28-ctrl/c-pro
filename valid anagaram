@@ -1,0 +1,30 @@
+#include <string>
+#include <vector>
+
+class Solution {
+public:
+    bool isAnagram(std::string s, std::string t) {
+        // Step 1: Base case check for matching lengths
+        if (s.length() != t.length()) {
+            return false;
+        }
+        
+        // Step 2: Use a fixed-size array for lowercase English letters
+        int charCounts[26] = {0};
+        
+        // Step 3: Count frequencies from both strings simultaneously
+        for (int i = 0; i < s.length(); ++i) {
+            charCounts[s[i] - 'a']++;
+            charCounts[t[i] - 'a']--;
+        }
+        
+        // Step 4: If any value is not zero, the strings are not anagrams
+        for (int count : charCounts) {
+            if (count != 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
