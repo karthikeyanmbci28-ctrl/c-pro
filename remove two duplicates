@@ -1,0 +1,25 @@
+#include <vector>
+
+class Solution {
+public:
+    int removeDuplicates(std::vector<int>& nums) {
+        // Handle empty array edge case
+        if (nums.empty()) return 0;
+        
+        // Pointer to track the position of the next unique element
+        int insertIndex = 1;
+        
+        // Scan the array starting from the second element
+        for (int i = 1; i < nums.size(); ++i) {
+            // If current element is different from the previous one, it's unique
+            if (nums[i] != nums[i - 1]) {
+                nums[insertIndex] = nums[i];
+                insertIndex++;
+            }
+        }
+        
+        // insertIndex represents the total count of unique elements
+        return insertIndex;
+    }
+};
+
