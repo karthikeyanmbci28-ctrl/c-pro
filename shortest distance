@@ -1,0 +1,8 @@
+int* shortestToChar(char* s, char c, int* returnSize) {
+    int *a = malloc(sizeof(int [1024])), z = 0;
+    int ix[50], i = 0, j = 0, k = 0, l = 0, d1 = 0, d2 = 0;
+    for (i = 0, j = 0 ; s[i] ; s[i] == c ? ix[k++] = i : 0, i++);
+    for (l = i, i = 0, j = 0 ; i < l ; a[z++] = d1, i++)
+        (d2 = abs(i - ix[j + 1])) < (d1 = abs(i - ix[j])) && i > ix[j] ? (d1 = d2), j++ : 0;
+    return *returnSize = z, a;
+}
