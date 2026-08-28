@@ -1,0 +1,18 @@
+bool isPalindrome(char* s) {
+    int left = 0;
+    int right = strlen(s) - 1;
+    while (left < right) {
+        if (s[left] != s[right]) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+int removePalindromeSub(char* s) {
+    if (isPalindrome(s)) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
