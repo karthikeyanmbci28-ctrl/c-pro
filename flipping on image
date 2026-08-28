@@ -1,0 +1,25 @@
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+int** flipAndInvertImage(int** image, int imageSize, int* imageColSize, int* returnSize, int** returnColumnSizes) {
+    *returnSize=imageSize;
+    *returnColumnSizes = imageColSize;
+    for(int i=0;i<imageSize;i++){   // for traversing
+        int right=0;               // starts from leftmost elemnet
+        int left=*imageColSize-1;   // starts from rightmost element
+        while(right<=left){
+            if(right==left){        //if right and left pointers are equal then
+                image[i][right]=1-image[i][left];
+                break;
+            }
+            int temp=image[i][right];       // set the value of tem to right var
+            image[i][right]=!image[i][left];    // set the inverted value of right to left ele
+            image[i][left] = !temp;
+            right++;
+            left--;
+        }
+    }
+    return image;
+}
