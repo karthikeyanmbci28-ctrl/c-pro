@@ -1,0 +1,12 @@
+bool checkIfExist(int* arr, int arrSize) {
+    int i=0;
+    while (i<arrSize){
+        for (int j=i+1;j<arrSize;j+=1){
+            if (arr[i]==2*arr[j] || arr[j]==2*arr[i]){
+                return true;
+            }
+        }
+        i+=1;
+    }
+    return false;
+}
