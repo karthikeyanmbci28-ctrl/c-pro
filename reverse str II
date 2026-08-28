@@ -1,0 +1,97 @@
+char* reverseStr(char* s, int k) {
+    if(k==1){
+        return s;
+    }
+
+    // len of s
+    int len = 0;
+    
+    while(s[len] != '\0'){
+        len++;
+    }
+
+    int unchagedLen = len;
+    if(len == 1){
+        return s;
+    }
+
+    int index = 0;
+    
+    int left = 0; 
+    int right = 0;
+
+    // k2 == 2k
+    int k2 = 2*k;
+
+    while(len > 0 && index < unchagedLen){
+        if(k2 <= len){
+
+            // printf("HIT");
+            left = index;
+            right = index + k-1;
+            
+            while(left < right){
+                // printf("HIT");
+                char temp = s[left];
+                // printf("Left: %d,right: %d", left,right);
+                s[left] = s[right];
+                // printf("HIT11");
+                s[right] = temp;
+                left++;
+                right--;
+                // printf("HIT");
+            }
+
+            // printf("HIT");
+            index = index + k2;
+            len = len - k2;
+
+            if(len == 1){
+                // printf("HIT");
+                return s;
+            }
+        }
+        else if(len < k2 && k <= len && index < unchagedLen){
+            // printf("HIT");
+            left = index;
+            right = index + k-1;
+            
+            while(left < right){
+                char temp = s[left];
+                s[left] = s[right];
+                s[right] = temp;
+                left++;
+                right--;
+            }
+            // printf("HIT");
+            index = index + k2;
+            len = len - k2;
+
+            if(len == 1){
+                return s;
+            }
+        }
+        else if(len < k && index < unchagedLen){
+            left = index;
+            right = unchagedLen-1;
+            
+            while(left < right){
+                char temp = s[left];
+                s[left] = s[right];
+                s[right] = temp;
+                left++;
+                right--;
+            }
+
+            index = index + k2;
+            len = len - k2;
+
+            if(len == 1){
+                return s;
+            }
+        }
+    }
+
+    printf("hit");
+    return s;
+}
