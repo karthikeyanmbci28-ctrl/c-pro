@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isPrefixString(string s, vector<string>& words) {
+        int ptr1 = 0;
+
+        int i = 0;
+        bool flag = 1;
+        int k = 0;
+        for (int i = 0; i < words.size(); i++) {
+            int ptr2 = 0;
+            while (ptr2 < words[i].size()) {
+                if (words[i][ptr2] != s[ptr1]) {
+                    flag = 0;
+                    break;
+                }
+                ptr1++;
+                ptr2++;
+                if (ptr1 == s.size())
+                    break;
+            }
+            if (ptr2 == words[i].size())
+                k++;
+            if (ptr1 == s.size() && ptr2 != words[i].size())
+                flag = 0;
+            if (ptr1 == s.size() || !flag)
+                break;
+        }
+        if (ptr1 != s.size() || k == 0)
+            flag = 0;
+        return flag;
+    }
+};
